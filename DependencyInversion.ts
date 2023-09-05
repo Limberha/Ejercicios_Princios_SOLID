@@ -54,3 +54,50 @@ class GestorConfiguraciones {
         return this.db.obtener();
     }
 }
+
+
+
+
+
+//////////////////////////////////////////////
+//Aplicando Dependency Inversion
+//////////////////////////////////////////////
+
+
+interface DispositivoElectrico {
+    encender(): void;
+    apagar(): void;
+}
+
+class Luz_1 implements DispositivoElectrico {
+    encender() {
+        console.log("Luz encendida");
+    }
+
+    apagar() {
+        console.log("Luz apagada");
+    }
+}
+
+class Interruptor_1 {
+    private dispositivo: DispositivoElectrico;
+
+    constructor(dispositivo: DispositivoElectrico) {
+        this.dispositivo = dispositivo;
+    }
+
+    operar() {
+        var sw = 0;
+        if (sw == 1) {
+            this.dispositivo.encender();
+        } else {
+            this.dispositivo.apagar();
+        }
+    }
+}
+
+// Uso del código
+const luz = new Luz_1();
+const interruptor = new Interruptor_1(luz);
+
+interruptor.operar(); 
