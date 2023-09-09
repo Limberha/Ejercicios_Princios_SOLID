@@ -23,7 +23,9 @@ class Interruptor {
     }
 }
 
-
+class Configuracion{
+    constructor(public configuracion: string){}
+}
 
 
 
